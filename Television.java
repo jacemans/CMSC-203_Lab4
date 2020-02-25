@@ -1,47 +1,53 @@
 
-import java.util.Scanner;
+public class Television {
 
-/** 
-* This class tests the Television class
-*/
-public class TelevisionDemo
-	{
-	public static void main(String[] args)
-	{
-		//create a Scanner object to read from the keyboard
-		Scanner keyboard = new Scanner (System.in);
-		//declare variables
-		int station; //the user’s channel choice
-		//declare and instantiate a television object
-		Television bigScreen = new Television("Toshiba", 55);
-		//turn the power on
-		bigScreen.power();
-		//display the state of the television
-		System.out.println("A " + bigScreen.getScreenSize() + "-inch " +
-				bigScreen.getManufacturer() + " has been turned on.");
-		//prompt the user for input and store into station
-		System.out.print("What channel do you want? ");
-		station = keyboard.nextInt();
-		//change the channel on the television
-		bigScreen.setChannel(station);
-		//increase the volume of the television
-		bigScreen.increaseVolume();
-		//display the the current channel and volume of the television
-		System.out.println("Channel: " + bigScreen.getChannel() +
-				", Volume: " + bigScreen.getVolume());
-		System.out.println("Too loud!! I am lowering the volume.");
-		//decrease the volume of the television
-		bigScreen.decreaseVolume();
-		bigScreen.decreaseVolume();
-		bigScreen.decreaseVolume();
-		bigScreen.decreaseVolume();
-		bigScreen.decreaseVolume();
-		bigScreen.decreaseVolume();
-		//display the current channel and volume of the television
-		System.out.println("Channel: " + bigScreen.getChannel() +
-				", Volume: " + bigScreen.getVolume());
-		System.out.println(); //for a blank line
-		//HERE IS WHERE YOU DO TASK #5
-		
-		}
+	private final String MANUFACTURER;
+	private final int SCREEN_SIZE;
+	
+	private boolean powerOn = false;
+	private int channel = 2;
+	private int volume = 20;
+	
+	/**
+	 * Television constructor
+	 * @param brand - the television brand
+	 * @param size - the size of the television screen
+	 */
+	public Television(String brand, int size) {
+		MANUFACTURER = brand;
+		SCREEN_SIZE = size;
 	}
+	
+	public void setChannel(int station) {
+		channel = station;
+	}
+	
+	public void power() {
+		powerOn = !powerOn;
+	}
+	
+	public void increaseVolume() {
+		volume++;
+	}
+	
+	public void decreaseVolume() {
+		if (volume > 0)
+			volume--;
+	}
+	
+	public int getChannel() {
+		return channel;
+	}
+	
+	public int getVolume() {
+		return volume;
+	}
+	
+	public String getManufacturer() {
+		return MANUFACTURER;
+	}
+	
+	public int getScreenSize() {
+		return SCREEN_SIZE;
+	}
+}
